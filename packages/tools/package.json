@@ -1,0 +1,31 @@
+{
+  "name": "tools",
+  "version": "0.0.1",
+  "private": true,
+  "description": "BI Link tools",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "pnpm build"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "defs": "workspace:*",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.4"
+  },
+  "dependenciesMeta": {
+    "defs": {
+      "injected": true
+    }
+  }
+}

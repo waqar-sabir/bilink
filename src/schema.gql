@@ -1,0 +1,219 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Coordinates {
+  lat: Float
+  long: Float
+}
+
+input CoordinatesInput {
+  lat: Float = 0
+  long: Float = 0
+}
+
+type CustomField {
+  _id: ID
+  fieldName: String!
+  fieldValue: String!
+  metadata: Metadata!
+}
+
+input CustomFieldInput {
+  _id: ID
+  fieldName: String!
+  fieldValue: String!
+  metadata: MetadataInput!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Education {
+  _id: ID
+  endDate: DateTime
+  metadata: Metadata!
+  school: String!
+  specialization: String!
+  startDate: DateTime
+  type: String!
+}
+
+input EducationInput {
+  _id: ID
+  endDate: DateTime
+  metadata: MetadataInput!
+  school: String!
+  specialization: String!
+  startDate: DateTime
+  type: String!
+}
+
+input FileInput {
+  category: String!
+  description: String
+  fileId: ID!
+  isHidden: Boolean!
+  metadata: MetadataInput!
+  name: String
+  tags: [String!]!
+}
+
+input IdDocumentInput {
+  _id: ID
+  documentNumber: String!
+  documentType: String!
+  expirationDate: DateTime
+  issueDate: DateTime
+  metadata: MetadataInput!
+  status: String!
+}
+
+type Location {
+  building: String
+  coordinates: Coordinates!
+  country: String
+  county: String
+  door: String
+  locality: String
+  locationId: ID
+  metadata: Metadata!
+  number: String
+  otherInfo: String
+  street: String
+  zipCode: String
+}
+
+input LocationInput {
+  building: String = ""
+  coordinates: CoordinatesInput!
+  country: String = ""
+  county: String = ""
+  door: String = ""
+  locality: String = ""
+  locationId: String = ""
+  metadata: MetadataInput!
+  number: String = ""
+  otherInfo: String = ""
+  street: String = ""
+  zipCode: String = ""
+}
+
+type Metadata {
+  access: String!
+  confirmed: Boolean!
+  trustworthiness: Trustworthiness!
+}
+
+input MetadataInput {
+  access: String!
+  confirmed: Boolean!
+  trustworthiness: TrustworthinessInput!
+}
+
+type Mutation {
+  createPerson(data: PersonInput!): Person!
+  removePerson(id: Int!): Person!
+}
+
+type OldName {
+  _id: ID
+  changeReason: String!
+  metadata: Metadata!
+  name: String!
+}
+
+input OldNameInput {
+  _id: ID
+  changeReason: String!
+  metadata: MetadataInput!
+  name: String!
+}
+
+type OptionalDateValue {
+  metadata: Metadata!
+  value: DateTime
+}
+
+input OptionalDateValueInput {
+  metadata: MetadataInput!
+  value: DateTime
+}
+
+type Person {
+  _id: ID!
+  birthPlace: Location
+  birthdate: OptionalDateValue!
+  cnp: TextValue!
+  contactDetails: [CustomField!]!
+  createdAt: DateTime!
+  customFields: [CustomField!]!
+  education: [Education!]!
+  firstName: TextValue!
+  homeAddress: Location
+  lastName: TextValue!
+  metadata: Metadata!
+  oldNames: [OldName!]!
+  relationships: [Relationship!]!
+  updatedAt: DateTime!
+}
+
+input PersonInput {
+  birthPlace: LocationInput
+  birthdate: OptionalDateValueInput!
+  cnp: TextValueInput!
+  contactDetails: [CustomFieldInput!]!
+  customFields: [CustomFieldInput!]!
+  documents: [IdDocumentInput!]!
+  education: [EducationInput!]!
+  files: [FileInput!]!
+  firstName: TextValueInput!
+  homeAddress: LocationInput
+  images: [FileInput!]!
+  lastName: TextValueInput!
+  metadata: MetadataInput!
+  oldNames: [OldNameInput!]!
+  relationships: [RelationshipInput!]!
+}
+
+type Query {
+  person(id: Int!): Person!
+  persons: [Person!]!
+}
+
+type Relationship {
+  description: String!
+  metadata: Metadata!
+  proximity: Float!
+  type: String!
+}
+
+input RelationshipInput {
+  _confirmed: Boolean = true
+  description: String!
+  metadata: MetadataInput!
+  proximity: Float!
+  type: String!
+}
+
+type TextValue {
+  metadata: Metadata!
+  value: String!
+}
+
+input TextValueInput {
+  metadata: MetadataInput!
+  value: String!
+}
+
+type Trustworthiness {
+  level: Float!
+  source: String!
+}
+
+input TrustworthinessInput {
+  level: Float!
+  source: String!
+}
